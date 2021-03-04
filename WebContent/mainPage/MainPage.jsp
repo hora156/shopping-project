@@ -16,7 +16,81 @@
     height: 200px;
     background: #aaa;
   }
+  
+  * {box-sizing: border-box}
+
+	.container {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	/* Style the tab */
+	.tab {
+	  float: left;
+	  border: 1px solid #ccc;
+	  background-color: #f1f1f1;
+	  width: 30%;
+	  height: 300px;
+	}
+	
+	/* Style the buttons that are used to open the tab content */
+	.tab button {
+	  display: block;
+	  background-color: inherit;
+	  color: black;
+	  padding: 22px 16px;
+	  width: 100%;
+	  border: none;
+	  outline: none;
+	  text-align: left;
+	  cursor: pointer;
+	  transition: 0.3s;
+	}
+	
+	/* Change background color of buttons on hover */
+	.tab button:hover {
+	  background-color: #ddd;
+	}
+	
+	/* Create an active/current "tab button" class */
+	.tab button.active {
+	  background-color: #ccc;
+	}
+	
+	/* Style the tab content */
+	.tabcontent {
+	  float: left;
+	  padding: 0px 12px;
+	  border: 1px solid #ccc;
+	  width: 70%;
+	  border-left: none;
+	  height: 300px;
+	}
   </style>
+  <script type="text/javascript">
+  
+  
+  
+  	function openCity(evt, cityName) {
+	  // Declare all variables
+	  var i, tabcontent, tablinks;
+
+	  // Get all elements with class="tabcontent" and hide them
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+	    tabcontent[i].style.display = "none";
+	  }
+
+	  // Get all elements with class="tablinks" and remove the class "active"
+	  tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+	    tablinks[i].className = tablinks[i].className.replace(" active", "");
+	  }
+
+	  // Show the current tab, and add an "active" class to the link that opened the tab
+	  document.getElementById(cityName).style.display = "block";
+	  evt.currentTarget.className += " active";
+	}
+  </script>
 </head>
 <body>
 
@@ -45,47 +119,30 @@
   </div>  
 </nav>
 
-<div class="container" style="margin-top:30px">
+<div class="container">
   <div class="row">
-    <div class="col-sm-4">
-      <h2>About Me</h2>
-      <h5>Photo of me:</h5>
-      <div class="fakeimg">Fake Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-      <h3>Some Links</h3>
-      <p>Lorem ipsum dolor sit ame.</p>
-      <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-      <hr class="d-sm-none">
-    </div>
-    <div class="col-sm-8">
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Dec 7, 2017</h5>
-      <div class="fakeimg">Fake Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-      <br>
-      <h2>TITLE HEADING</h2>
-      <h5>Title description, Sep 2, 2017</h5>
-      <div class="fakeimg">Fake Image</div>
-      <p>Some text..</p>
-      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-    </div>
-  </div>
-</div>
-
+  	<div class="tab">
+	  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+	  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+	  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+	</div>
+	
+	<div id="London" class="tabcontent">
+	  <h3>London</h3>
+	  <p>London is the capital city of England.</p>
+	</div>
+	
+	<div id="Paris" class="tabcontent">
+	  <h3>Paris</h3>
+	  <p>Paris is the capital of France.</p>
+	</div>
+	
+	<div id="Tokyo" class="tabcontent">
+	  <h3>Tokyo</h3>
+	  <p>Tokyo is the capital of Japan.</p>
+	</div>
+	  </div>
+	</div>
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>Footer</p>
 </div>

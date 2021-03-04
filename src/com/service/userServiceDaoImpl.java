@@ -18,8 +18,15 @@ public class userServiceDaoImpl implements UserServiceDao {
 	public void setDataSource(DataSource ds) {
 		this.ds = ds;
 	}
+
 	@Override
-	public List<User> userList() throws Exception {
+	public int create(User user) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public List<User> read() throws Exception {
 		Connection connection = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -65,12 +72,6 @@ public class userServiceDaoImpl implements UserServiceDao {
 			} catch (Exception e) {
 			}
 		}
-	}
-
-	@Override
-	public int create(User user) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override

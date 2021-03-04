@@ -16,7 +16,7 @@ public class UserListController implements Controller {
 
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		model.put("user", userSrivceDao.userList());
+		model.put("user", userSrivceDao.read());
 		return "/test.jsp";
 	}
 
