@@ -3,7 +3,7 @@ package com.example.controller.user;
 import java.util.Map;
 
 import com.annotation.Component;
-import com.service.UserServiceDao;
+import com.service.UserServiceDaoImpl;
 
 import lombok.Setter;
 
@@ -11,12 +11,12 @@ import lombok.Setter;
 public class UserListController implements Controller {
 	
 	@Setter
-	UserServiceDao userSrivceDao;
+	UserServiceDaoImpl userServiceDaoImpl;
 	
 
 	@Override
 	public String execute(Map<String, Object> model) throws Exception {
-		model.put("user", userSrivceDao.read());
+		model.put("user", userServiceDaoImpl.UserList());
 		return "/test.jsp";
 	}
 

@@ -1,18 +1,18 @@
-package com.example.model.entity;
-
-import java.time.LocalDateTime;
-import java.util.List;
+package com.example.model.network.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class UserApiResponse {
 
     private int id;
 
@@ -20,7 +20,7 @@ public class User {
 
     private String password;
 
-    private String status;      // REGISTERED / UNREGISTERED / WAITING
+    private String status;
 
     private String email;
 
@@ -30,14 +30,6 @@ public class User {
 
     private LocalDateTime unregisteredAt;
 
-    private LocalDateTime createdAt;
-
-    private String createdBy;
-
-    private LocalDateTime updatedAt;
-
-    private String updatedBy;
-
-    private List<OrderGroup> orderGroupList;
+    private List<OrderGroupApiResponse> orderGroupApiResponseList;
 
 }
