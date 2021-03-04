@@ -65,6 +65,20 @@
 	  border-left: none;
 	  height: 300px;
 	}
+	
+	.column {
+	  float: left;
+	  width: 25%;
+	  padding: 5px;
+	  height: 150px; /* Should be removed. Only for demonstration */
+	}
+	
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
   </style>
   <script type="text/javascript">
   
@@ -128,8 +142,22 @@
 	</div>
 	
 	<div id="London" class="tabcontent">
-	  <h3>London</h3>
-	  <p>London is the capital city of England.</p>
+	  <div class="column" style="background-color:#aaa;">
+	    <h2>Column 1</h2>
+	    <p>Some text..</p>
+	  </div>
+	  <div class="column" style="background-color:#bbb;">
+	    <h2>Column 2</h2>
+	    <p>Some text..</p>
+	  </div>
+	  <div class="column" style="background-color:#ccc;">
+	    <h2>Column 3</h2>
+	    <p>Some text..</p>
+	  </div>
+	  <div class="column" style="background-color:#ddd;">
+	    <h2>Column 4</h2>
+	    <p>Some text..</p>
+	  </div>
 	</div>
 	
 	<div id="Paris" class="tabcontent">
