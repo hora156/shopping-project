@@ -29,7 +29,7 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 	}
 
 	@Override
-	public Header<UserApiResponse> read(Long id) {
+	public Header<UserApiResponse> read(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,7 +46,7 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 		return null;
 	}
 
-	public Header<ArrayList<UserApiResponse>> UserList() throws Exception{
+	public Header<ArrayList<UserApiResponse>> userList() throws Exception{
 		Connection connection = null;
 		Statement stmt = null;
 		ResultSet rs = null;

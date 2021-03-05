@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
     <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -29,7 +31,7 @@
 	  border: 1px solid #ccc;
 	  background-color: #f1f1f1;
 	  width: 30%;
-	  height: 300px;
+	  height: 100%;
 	}
 	
 	/* Style the buttons that are used to open the tab content */
@@ -63,7 +65,7 @@
 	  border: 1px solid #ccc;
 	  width: 70%;
 	  border-left: none;
-	  height: 300px;
+	  height: 100%;
 	}
 	
 	.column {
@@ -82,9 +84,11 @@
   </style>
   <script type="text/javascript">
   
+  	function linked(id) {
+		location.href = '/shopping/clientPage/detailItem.do?id='+id;
+	}
   
-  
-  	function openCity(evt, cityName) {
+  	function openCity(evt, category) {
 	  // Declare all variables
 	  var i, tabcontent, tablinks;
 
@@ -101,9 +105,17 @@
 	  }
 
 	  // Show the current tab, and add an "active" class to the link that opened the tab
-	  document.getElementById(cityName).style.display = "block";
+	  document.getElementById(category).style.display = "block";
 	  evt.currentTarget.className += " active";
 	}
+  
+	$( document ).ready(function() {
+		
+	 	 openCity(event, 1);
+	  
+	});
+	 
+  
   </script>
 </head>
 <body>
@@ -132,44 +144,102 @@
     </ul>
   </div>  
 </nav>
-
 <div class="container">
   <div class="row">
   	<div class="tab">
-	  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-	  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-	  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  	<c:forEach var="category" items="${category.data }">
+	  <button class="tablinks" onclick="openCity(event, ${category.id})">${category.title}</button>
+	</c:forEach>
 	</div>
-	
-	<div id="London" class="tabcontent">
-	  <div class="column" style="background-color:#aaa;">
-	    <h2>Column 1</h2>
-	    <p>Some text..</p>
-	  </div>
-	  <div class="column" style="background-color:#bbb;">
-	    <h2>Column 2</h2>
-	    <p>Some text..</p>
-	  </div>
-	  <div class="column" style="background-color:#ccc;">
-	    <h2>Column 3</h2>
-	    <p>Some text..</p>
-	  </div>
-	  <div class="column" style="background-color:#ddd;">
-	    <h2>Column 4</h2>
-	    <p>Some text..</p>
-	  </div>
+	<div id=1 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '컴퓨터')}">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
 	</div>
-	
-	<div id="Paris" class="tabcontent">
-	  <h3>Paris</h3>
-	  <p>Paris is the capital of France.</p>
+	<div id=2 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '의류')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
 	</div>
-	
-	<div id="Tokyo" class="tabcontent">
-	  <h3>Tokyo</h3>
-	  <p>Tokyo is the capital of Japan.</p>
+	<div id=3 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '멀티샵')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
 	</div>
-	  </div>
+	<div id=4 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '인테리어')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
+	</div>
+	<div id=5 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '음식')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
+	</div>
+	<div id=6 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '스포츠')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
+	</div>
+	<div id=7 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '쇼핑몰')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
+	</div>
+	<div id=8 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '면세점')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
+	</div>
+	<div id=9 class="tabcontent">
+		<c:forEach var="items" items="${item.data}">
+			<c:if test="${fn:contains(items.title, '화장')}">
+					<div class="column" style="background-color:#aaa;">
+					  <p>${items.name }</p>
+					  <p>${items.price }</p>
+					</div>
+			</c:if>
+		</c:forEach>
 	</div>
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>Footer</p>
