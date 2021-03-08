@@ -24,7 +24,7 @@ public class ItemApiService implements CrudInterface<ItemApiRequest, ItemApiResp
 	}
 	
 	@Override
-	public Header<ItemApiResponse> create(Header<ItemApiRequest> request) {
+	public Boolean create(Header<ItemApiRequest> request) {
 		// TODO Auto-generated method stub
 		return null;
 	}

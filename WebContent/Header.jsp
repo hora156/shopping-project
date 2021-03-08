@@ -57,7 +57,7 @@
 <body>
 
     <div class="navbar">
-        <a class="topMenu" href="#home">Home</a>
+        <a class="topMenu" href="/shopping/mainPage/MainPage.do">Home</a>
         <a class="topMenu" href="#news">News</a>
         <a class="topMenu" href="#contact">Contact</a>
         <a class="side" href="/shopping/clientPage/loginPage.do">로그인</a>

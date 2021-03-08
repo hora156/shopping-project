@@ -81,6 +81,54 @@
 	  display: table;
 	  clear: both;
 	}
+	
+     * {
+        box-sizing: border-box;
+    }
+
+ 
+
+     .header {
+         background-color: #f1f1f1;
+         padding: 30px;
+         text-align: center;
+     }
+
+     #navbar {
+         overflow: hidden;
+         background-color: #333;
+     }
+
+     #navbar a {
+         float: left;
+         display: block;
+         color: #f2f2f2;
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+     }
+
+     #navbar>.another {
+         float: right;
+         font-size: 13px;
+         padding: 17px 16px;
+     }
+
+     #navbar a:hover {
+         background-color: #ddd;
+         color: black;
+     }
+
+     .sticky {
+         position: fixed;
+         top: 0;
+         width: 100%;
+     }
+
+     .sticky+.content {
+         padding-top: 60px;
+     }
   </style>
   <script type="text/javascript">
   
@@ -109,41 +157,32 @@
 	  evt.currentTarget.className += " active";
 	}
   
-	$( document ).ready(function() {
+	$(document).ready(function() {
 		
 	 	 openCity(event, 1);
+	 	 
+	 	
 	  
 	});
-	 
+	
+
   
   </script>
 </head>
 <body>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>My First Bootstrap 4 Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
+<div class="header">
+    <h2>Scroll Down</h2>
+    <p>Scroll down to see the sticky effect.</p>
 </div>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>    
-    </ul>
-  </div>  
-</nav>
+<div id="navbar">
+    <a class="active" href="javascript:void(0)">Home</a>
+    <a href="javascript:void(0)">News</a>
+    <a href="javascript:void(0)">Contact</a>
+    <a class="another" href="/shopping/clientPage/loginPage.do">Login</a>
+</div>
+
 <div class="container">
   <div class="row">
   	<div class="tab">
@@ -244,6 +283,24 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
   <p>Footer</p>
 </div>
-
+</div>
+</div>
+<script type="text/javascript">
+	$(window).scroll(function(event) {
+		myFunction();
+	});
+	
+	
+	var navbar = document.getElementById("navbar");
+	var sticky = navbar.offsetTop;
+	
+	function myFunction() {
+	    if (window.pageYOffset >= sticky) {
+	        navbar.classList.add("sticky")
+	    } else {
+	        navbar.classList.remove("sticky");
+	    }
+	}
+</script>
 </body>
 </html>

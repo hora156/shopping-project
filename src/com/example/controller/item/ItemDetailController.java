@@ -21,7 +21,7 @@ public class ItemDetailController implements Controller, DataBinding {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		String id = req.getParameter("id");
-		System.out.println(itemApiService.read(Integer.parseInt(id)));
+		req.setAttribute("item", itemApiService.read(Integer.parseInt(id)));
 		return "/clientPage/detailItem.jsp";
 	}
 

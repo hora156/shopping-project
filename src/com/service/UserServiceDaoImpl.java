@@ -1,8 +1,10 @@
 package com.service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import com.annotation.Component;
 import com.example.model.entity.User;
 import com.example.model.network.Header;
 import com.example.model.network.request.UserApiRequest;
+import com.example.model.network.response.ItemApiResponse;
 import com.example.model.network.response.UserApiResponse;
 
 @Component("userDao")
@@ -23,9 +26,43 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 	}
 
 	@Override
-	public Header<UserApiResponse> create(Header<UserApiRequest> UserApiRequest) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean create(Header<UserApiRequest> userApiRequest) throws Exception {
+		Connection connection = null;
+		PreparedStatement stmt = null;
+
+		try {
+			connection = ds.getConnection();
+			stmt = connection.prepareStatement("insert into user "
+					+ "(account, password, status, email, "
+					+ "phone_number, created_at, created_by)"
+					+ "values"
+					+ "(?, ?, ?, ?, ?, NOW(), ?)");
+			stmt.setString(1, userApiRequest.getData().getAccount());
+			stmt.setString(2, userApiRequest.getData().getPassword());
+			stmt.setString(3, userApiRequest.getData().getStatus());
+			stmt.setString(4, userApiRequest.getData().getEmail());
+			stmt.setString(5, userApiRequest.getData().getPhoneNumber());
+			stmt.setString(6, "Admin_User");
+			if(stmt.executeUpdate() == 1) 
+				return true;
+			else
+				return false;
+
+		} catch (Exception e) {
+			throw e;
+
+		} finally {
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 
 	@Override
@@ -44,6 +81,53 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 	public Header delete(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Header<UserApiResponse> loginUser(String account, String password) throws Exception {
+		Connection connection = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			connection = ds.getConnection();
+			stmt = connection.createStatement();
+			System.out.println(account);
+			System.out.println(password);
+			rs = stmt.executeQuery("SELECT account, email" +
+										" FROM user" +
+										" where account = '" + account +
+										"' AND password = '" + password + "'");
+			UserApiResponse user = new UserApiResponse();
+			if(rs.next()) {
+				user = UserApiResponse.builder()
+						.account(rs.getString("account"))
+						.email(rs.getString("email"))
+						.build();
+			}else {
+				return Header.ERROR("존재하지 않는 아이디입니다.");
+			}
+			return Header.OK(user);
+
+		} catch (Exception e) {
+			throw e;
+
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+			}
+		}
 	}
 
 	public Header<ArrayList<UserApiResponse>> userList() throws Exception{
