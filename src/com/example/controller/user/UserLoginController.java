@@ -29,9 +29,10 @@ public class UserLoginController implements Controller, DataBinding {
 			String password = req.getParameter("password");
 			
 			HttpSession session = req.getSession();
-			
-			if(userService.loginUser(account, password).equals("ERROR")) {
+			System.out.println(userService.loginUser(account, password).getResultCode());
+			if(userService.loginUser(account, password).getResultCode().equals("ERROR")) {
 				req.setAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
+				
 				return "/clientPage/loginPage.jsp";
 			}else {
 				session.setAttribute("user", userService.loginUser(account, password));
