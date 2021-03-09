@@ -32,7 +32,7 @@
             display: block;
             color: #f2f2f2;
             text-align: center;
-            padding: 18px 16px;
+            padding: 18.5px 16px;
             text-decoration: none;
             font-size: 10px;
         }
@@ -42,7 +42,7 @@
             display: block;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 15px 16px;
             text-decoration: none;
             font-size: 17px;
         }
@@ -60,7 +60,15 @@
         <a class="topMenu" href="/shopping/mainPage/MainPage.do">Home</a>
         <a class="topMenu" href="#news">News</a>
         <a class="topMenu" href="#contact">Contact</a>
-        <a class="side" href="/shopping/clientPage/loginPage.do">로그인</a>
-        <a class="side" href="#myinfo">내정보</a>
-        <a class="side" href="#basket">장바구니</a>
+        <c:choose>
+    	<c:when test="${sessionScope.user eq null}">
+    		<a class="side" href="/shopping/clientPage/loginPage.do">로그인</a>
+    	</c:when>
+    	<c:otherwise>
+	    	<a class="side" href="#myinfo">내정보</a>
+	        <a class="side" href="#basket">장바구니</a>
+    		<a class="side" href="/shopping/clientPage/logout.do">로그아웃</a>
+    	</c:otherwise>
+    </c:choose>
+        
     </div>

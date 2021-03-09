@@ -89,6 +89,23 @@
                 width: 100%;
             }
         }
+        
+        .bar {
+       		overflow: hidden;
+            background-color: #333;
+            top: 0;
+            width: 100px;
+        }
+        
+        .button {
+        	float: right;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 18.5px 16px;
+            text-decoration: none;
+            font-size: 20px;
+        }
     </style>
 </head>
 
@@ -115,6 +132,10 @@
                     <h3>상품 설명 및 이것 저것 들어갈 곳</h3>
                     <p>p태그 하나에</p>
                     <p>내용과 수량, 옵션, 구매 버튼 등등</p>
+                    <div class="bar">
+	                    <a class="abc" href="#">장바구니 추가</a>
+                    
+                    </div>
                 </div>
             </div>
 

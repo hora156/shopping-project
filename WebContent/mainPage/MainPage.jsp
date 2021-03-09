@@ -109,7 +109,7 @@
          font-size: 17px;
      }
 
-     #navbar>.another {
+     #navbar>.side {
          float: right;
          font-size: 13px;
          padding: 17px 16px;
@@ -158,14 +158,15 @@
 	}
   
 	$(document).ready(function() {
-		
-	 	 openCity(event, 1);
+	 	openCity(event, 1);
 	 	 
-	 	
-	  
 	});
 	
-
+	function removeSession() {
+		/* sessionStorage.removeItem('user.data'); */
+		console.log("test : " + sessionStorage.getItem('user'));
+		/* location.reload(); */
+	}
   
   </script>
 </head>
@@ -180,7 +181,22 @@
     <a class="active" href="javascript:void(0)">Home</a>
     <a href="javascript:void(0)">News</a>
     <a href="javascript:void(0)">Contact</a>
-    <a class="another" href="/shopping/clientPage/loginPage.do">Login</a>
+    <c:choose>
+    	<c:when test="${sessionScope.user eq null}">
+    		<a class="side" href="/shopping/clientPage/loginPage.do">로그인</a>
+    	</c:when>
+    	<c:otherwise>
+    		<a class="side" href="#myinfo">내정보</a>
+	        <a class="side" href="#basket">장바구니</a>
+    		<a class="side" href="/shopping/clientPage/logout.do">로그아웃</a>
+    	</c:otherwise>
+    </c:choose>
+    <%-- <c:if test="${empty user}">
+  	 	<a class="another" href="/shopping/clientPage/loginPage.do">로그인</a>
+    </c:if>
+    <c:if test="${not empty uesr}">
+   		<a class="another" href="#" onclick="removeSession()">로그아웃</a>
+    </c:if> --%>
 </div>
 
 <div class="container">

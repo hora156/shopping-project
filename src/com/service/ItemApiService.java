@@ -172,24 +172,9 @@ public class ItemApiService implements CrudInterface<ItemApiRequest, ItemApiResp
 		} catch (Exception e) {
 			throw e;
 
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-			} catch (Exception e) {
-			}
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (Exception e) {
-			}
-			try {
-				if (connection != null)
-					connection.close();
-			} catch (Exception e) {
-			}
 		}
-		
 	}
+	
+	
 
 }
