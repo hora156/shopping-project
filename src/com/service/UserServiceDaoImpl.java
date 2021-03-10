@@ -93,13 +93,14 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 			stmt = connection.createStatement();
 			System.out.println(account);
 			System.out.println(password);
-			rs = stmt.executeQuery("SELECT account, email" +
+			rs = stmt.executeQuery("SELECT id, account, email" +
 										" FROM user" +
 										" where account = '" + account +
 										"' AND password = '" + password + "'");
 			UserApiResponse user = new UserApiResponse();
 			if(rs.next()) {
 				user = UserApiResponse.builder()
+						.id(rs.getInt("id"))
 						.account(rs.getString("account"))
 						.email(rs.getString("email"))
 						.build();

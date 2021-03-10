@@ -187,7 +187,7 @@
     	</c:when>
     	<c:otherwise>
     		<a class="side" href="#myinfo">내정보</a>
-	        <a class="side" href="#basket">장바구니</a>
+	        <a class="side" href="/shopping/clientPage/basket.do?user_id=${sessionScope.user.data.id}">장바구니</a>
     		<a class="side" href="/shopping/clientPage/logout.do">로그아웃</a>
     	</c:otherwise>
     </c:choose>

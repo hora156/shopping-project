@@ -39,7 +39,6 @@ public class UserSignupController implements Controller, DataBinding {
 					.email(req.getParameter("email"))
 					.phoneNumber(req.getParameter("phone_number"))
 					.build();
-			System.out.println(data.toString());
 			
 			userService.create(Header.OK(data));
 			return "redirect:/shopping/clientPage/loginPage.do";

@@ -90,34 +90,55 @@
             }
         }
         
-        .bar {
-       		overflow: hidden;
-            background-color: #333;
-            top: 0;
-            width: 100px;
+        a {
+        	text-decoration: none;
         }
         
-        .button {
-        	float: right;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 18.5px 16px;
-            text-decoration: none;
-            font-size: 20px;
-        }
+	   .btn{
+	   		float:right;
+		    font-size:1rem;
+		    color:black;
+		    padding:8px 16px 8px 16px;
+		    margin:16px;
+		    display:inline-block;
+		    border-radius: 10px;
+		    transition:all 0.1s;
+		    text-decoration: none;
+		    /* font-family: 'Lobster', cursive; */ <!-- google font -->
+	    }
+	    .btn:active{
+	     	transform: translateY(3px);
+	    }
+	    .btn.blue{
+		    background-color: #1f75d9;
+		    border-bottom:5px solid #165195;
+	    }
+	    .btn.blue:active{
+	     	border-bottom:2px solid #165195;
+	    }
+	    .btn.red{
+		    background-color: #ff521e;
+		    border-bottom:5px solid #c1370e;
+	    }
+	    .btn.red:active{
+	     	border-bottom:2px solid #c1370e;
+	    }
+		
+		input[type="number"]::-webkit-outer-spin-button,
+		input[type="number"]::-webkit-inner-spin-button {
+		    -webkit-appearance: none;
+		    margin: 0;
+		}
     </style>
 </head>
 
 <body>
 
-
-
 <jsp:include page="/Header.jsp"/>
     <!-- MAIN (Center website) -->
     <div class="main">
 
-        <h1>제품 이름!</h1>
+        <h1>${item.data.name}</h1>
         <hr>
 
         <!-- Portfolio Gallery Grid -->
@@ -128,15 +149,23 @@
                 </div>
             </div>
             <div class="column2">
+            <form action="/shopping/clientPage/basket.do" method="post">
                 <div class="readMeItem">
+                	<input type="hidden" name="user_id" value="${sessionScope.user.data.id}">
+                	<input type="hidden" name="item_id" value="${item.data.id}">
                     <h3>상품 설명 및 이것 저것 들어갈 곳</h3>
-                    <p>p태그 하나에</p>
-                    <p>내용과 수량, 옵션, 구매 버튼 등등</p>
-                    <div class="bar">
-	                    <a class="abc" href="#">장바구니 추가</a>
-                    
-                    </div>
+                    <p>title : ${item.data.title }</p>
+                    <p>제품 설명 : ${item.data.content}</p>
+                    <p>가격 : ${item.data.price}</p>
+                    <p>브렌드 : ${item.data.brandName}</p>
+    				<p> 수량 : 
+    				<a href="#" id="decreaseQuantity">▼</a>
+                    <input id="numberUpDown" style="text-align: right; width: 30px;" width="50px;" type="number" name="count" value="1" min="0" />
+                    <a href="#" id="increaseQuantity">▲</a>
+                    </p>
                 </div>
+	                <input type="submit" class="btn" value="장바구니 추가">
+            </form>
             </div>
 
             <!-- END GRID -->
@@ -149,5 +178,29 @@
 
         <!-- END MAIN -->
     </div>
+<script type="text/javascript">
+		$(function(){
+			$('#decreaseQuantity').click(function(e){
+				e.preventDefault();
+				var stat = $('#numberUpDown').val();
+				var num = parseInt(stat,10);
+				num--;
+				if(num<=0){
+					alert('더이상 줄일수 없습니다.');
+					num = 1;
+				}
+				$('#numberUpDown').val(num);
+			});
+			
+			$('#increaseQuantity').click(function(e){
+				e.preventDefault();
+				var stat = $('#numberUpDown').val();
+				var num = parseInt(stat,10);
+				num++;
+				$('#numberUpDown').val(num);
+			});
+	});
 
+	  
+</script>
 </body></html>
