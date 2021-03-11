@@ -93,7 +93,7 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 			stmt = connection.createStatement();
 			System.out.println(account);
 			System.out.println(password);
-			rs = stmt.executeQuery("SELECT id, account, email" +
+			rs = stmt.executeQuery("SELECT id, account, email, phone_number" +
 										" FROM user" +
 										" where account = '" + account +
 										"' AND password = '" + password + "'");
@@ -103,6 +103,7 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 						.id(rs.getInt("id"))
 						.account(rs.getString("account"))
 						.email(rs.getString("email"))
+						.phoneNumber(rs.getString("phone_number"))
 						.build();
 			}else {
 				return Header.ERROR("존재하지 않는 아이디입니다.");

@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="column2">
-            <form action="/shopping/clientPage/basket.do" method="post">
+            <form method="post">
                 <div class="readMeItem">
                 	<input type="hidden" name="user_id" value="${sessionScope.user.data.id}">
                 	<input type="hidden" name="item_id" value="${item.data.id}">
@@ -164,7 +164,8 @@
                     <a href="#" id="increaseQuantity">▲</a>
                     </p>
                 </div>
-	                <input type="submit" class="btn" value="장바구니 추가">
+	                <input type="submit" class="btn" value="장바구니 추가" formaction="/shopping/clientPage/basket.do">
+	                <input type="submit" class="btn" id="payment" value="구매하기" formaction="/shopping/clientPage/payment.do">
             </form>
             </div>
 

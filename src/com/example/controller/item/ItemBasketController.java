@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.annotation.Component;
 import com.example.bind.DataBinding;
 import com.example.controller.main.Controller;
+import com.example.model.entity.User;
 import com.example.model.network.Header;
 import com.example.model.network.request.BasketApiRequest;
 import com.example.model.network.request.ItemApiRequest;
@@ -31,7 +32,6 @@ public class ItemBasketController implements Controller, DataBinding {
 					Integer.parseInt(req.getParameter("user_id")) 
 					) 
 			);
-			
 			return "/clientPage/basketPage.jsp";
 			
 		}else if(req.getMethod().equalsIgnoreCase("POST")) {
@@ -46,6 +46,7 @@ public class ItemBasketController implements Controller, DataBinding {
 			
 			if(basketService.create(Header.OK(itemRequest))) {
 				id =  Integer.parseInt(req.getParameter("item_id"));
+				
 				return "redirect:detailItem.do?id="+id;
 			}else {
 				return "에러 페이지";
