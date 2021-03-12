@@ -160,7 +160,7 @@
                     <p>브렌드 : ${item.data.brandName}</p>
     				<p> 수량 : 
     				<a href="#" id="decreaseQuantity">▼</a>
-                    <input id="numberUpDown" style="text-align: right; width: 30px;" width="50px;" type="number" name="count" value="1" min="0" />
+                    <input id="numberUpDown" style="text-align: right; width: 30px;" width="50px;" type="number" name="quantity" value="1" min="0" />
                     <a href="#" id="increaseQuantity">▲</a>
                     </p>
                 </div>

@@ -70,7 +70,7 @@
                 
                 form.submit(); */
                 
-               location.href='<%=request.getContextPath()%>/payment/completPayment.do?item_id='+${item.data.id}+'&total_price='+${totalPrice}+'&user_id='+${user.data.id};
+                location.href='<%=request.getContextPath()%>/paymentPage/completPayment.do?item_id='+${item.data.id}+'&total_price='+${totalPrice}+'&user_id='+${user.data.id}+'&quantity='+${quantity};
             } else {
                 msg = '결제에 실패하였습니다.';
                 msg += '에러내용 : ' + rsp.error_msg;

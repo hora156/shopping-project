@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-    <!DOCTYPE html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
 <head>
@@ -211,7 +213,7 @@
 			<c:if test="${fn:contains(items.title, '컴퓨터')}">
 					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -219,9 +221,9 @@
 	<div id=2 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '의류')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -229,9 +231,9 @@
 	<div id=3 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '멀티샵')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -239,9 +241,9 @@
 	<div id=4 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '인테리어')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -249,9 +251,9 @@
 	<div id=5 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '음식')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -259,9 +261,9 @@
 	<div id=6 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '스포츠')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -269,9 +271,9 @@
 	<div id=7 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '쇼핑몰')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -279,9 +281,9 @@
 	<div id=8 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '면세점')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>
@@ -289,9 +291,9 @@
 	<div id=9 class="tabcontent">
 		<c:forEach var="items" items="${item.data}">
 			<c:if test="${fn:contains(items.title, '화장')}">
-					<div class="column" style="background-color:#aaa;">
+					<div class="column" style="background-color:#aaa;" onclick="linked(${items.id})">
 					  <p>${items.name }</p>
-					  <p>${items.price }</p>
+					  <p><fmt:formatNumber value="${items.price }" pattern="#,###" /> 원</p>
 					</div>
 			</c:if>
 		</c:forEach>

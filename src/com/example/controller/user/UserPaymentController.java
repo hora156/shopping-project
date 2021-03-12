@@ -21,7 +21,7 @@ public class UserPaymentController implements Controller {
 		int id = Integer.parseInt(req.getParameter("item_id"));
 		
 		req.setAttribute("item", itemService.read(id));
-		req.setAttribute("count", req.getParameter("count"));
+		req.setAttribute("quantity", req.getParameter("quantity"));
 		return "/clientPage/paymentPage.jsp";
 	}
 

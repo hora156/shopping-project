@@ -32,8 +32,8 @@ public class OrderGroupApiRequest {
 
     private LocalDateTime orderAt;
 
-    private LocalDateTime arrivalDate;
+    private String arrivalDate;
 
-    private Long userId;
+    private int userId;
 
 }

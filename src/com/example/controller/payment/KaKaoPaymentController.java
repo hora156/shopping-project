@@ -25,10 +25,10 @@ public class KaKaoPaymentController implements Controller {
 		int id = Integer.parseInt(req.getParameter("item_id"));
 		
 		Header<ItemApiResponse> item = itemService.read(id);
-		BigDecimal price = new BigDecimal(req.getParameter("count"));
+		BigDecimal price = new BigDecimal(req.getParameter("quantity"));
 		
 		req.setAttribute("item", item);
-		req.setAttribute("count", req.getParameter("count"));
+		req.setAttribute("quantity", req.getParameter("quantity"));
 		
 		BigDecimal totalPrice = price.multiply(item.getData().getPrice());
 		

@@ -151,14 +151,14 @@ input[type="number"]::-webkit-inner-spin-button {
             <div class="column2">
             <form method="post">
                 <div class="readMeItem">
-                	<input type="hidden" name="count" value="${count}">
+                	<input type="hidden" name="quantity" value="${quantity}">
                 	<input type="hidden" name="item_id" value="${item.data.id}">
                     <h3>구매 상품</h3>
                     <p>title : ${item.data.title }</p>
                     <p>제품 설명 : ${item.data.content}</p>
                     <p>가격 : ${item.data.price}</p>
                     <p>브렌드 : ${item.data.brandName}</p>
-    				<p> 수량 : ${count}</p>
+    				<p> 수량 : ${quantity}</p>
                 </div>
 	                <input type="submit" class="btn" id="payment" value="구매하기" formaction="/shopping/payment/kakao.do">
             </form>
