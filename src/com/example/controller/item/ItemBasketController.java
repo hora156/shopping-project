@@ -39,7 +39,7 @@ public class ItemBasketController implements Controller, DataBinding {
 			new BasketApiRequest();
 			BasketApiRequest itemRequest = BasketApiRequest.builder()
 					.status("basket")
-					.quantity(Integer.parseInt(req.getParameter("count")))
+					.quantity(Integer.parseInt(req.getParameter("quantity")))
 					.userId(Integer.parseInt(req.getParameter("user_id")))
 					.itemId(Integer.parseInt(req.getParameter("item_id")))
 					.build();
@@ -63,7 +63,7 @@ public class ItemBasketController implements Controller, DataBinding {
 	public Object[] getDataBinders() {
 		return new Object[]{
 		        "item_id", Integer.class,
-		        "count", Integer.class,
+		        "quantity", Integer.class,
 		        "user_id", Integer.class
 		    };
 	}

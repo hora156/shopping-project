@@ -8,7 +8,10 @@ import javax.servlet.http.HttpSession;
 import com.annotation.Component;
 import com.example.bind.DataBinding;
 import com.example.controller.main.Controller;
+import com.example.model.network.Header;
+import com.example.model.network.response.UserApiResponse;
 import com.service.UserServiceDaoImpl;
+import com.util.SHA256Util;
 
 import lombok.Setter;
 
@@ -27,15 +30,21 @@ public class UserLoginController implements Controller, DataBinding {
 			
 			String account = req.getParameter("account");
 			String password = req.getParameter("password");
-			
 			HttpSession session = req.getSession();
-			System.out.println(userService.loginUser(account, password).getResultCode());
-			if(userService.loginUser(account, password).getResultCode().equals("ERROR")) {
+			
+			String userSalt = userService.getSalt(account);
+			String newPassword = SHA256Util.getEncrypt(password, userSalt);
+			
+			Header<UserApiResponse> user = userService.loginUser(account, newPassword);
+			
+			if(user.getResultCode().equals("ERROR")) {
 				req.setAttribute("error", "아이디 또는 비밀번호가 일치하지 않습니다.");
+				
 				
 				return "/clientPage/loginPage.jsp";
 			}else {
-				session.setAttribute("user", userService.loginUser(account, password));
+				
+				session.setAttribute("user", user);
 				return "redirect:/shopping/mainPage/MainPage.do";
 			}
 		}else

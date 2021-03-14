@@ -10,6 +10,7 @@ import com.example.model.network.Header;
 import com.example.model.network.request.UserApiRequest;
 import com.example.model.network.request.UserApiRequest.UserApiRequestBuilder;
 import com.service.UserServiceDaoImpl;
+import com.util.SHA256Util;
 
 import lombok.Setter;
 
@@ -19,17 +20,14 @@ public class UserSignupController implements Controller, DataBinding {
 	@Setter
 	UserServiceDaoImpl userService;
 	
-	@SuppressWarnings("null")
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		
 		if(req.getMethod().equalsIgnoreCase("GET")) {
-			System.out.println("get");
 			return "/clientPage/signupPage.jsp";
+		} 
+		else if(req.getMethod().equalsIgnoreCase("POST")) {
 			
-		} else if(req.getMethod().equalsIgnoreCase("POST")) {
-			
-//			Header<UserApiRequest> userApiRequest = null;
 			
 			new UserApiRequest();
 			UserApiRequest data = UserApiRequest.builder()
@@ -39,6 +37,12 @@ public class UserSignupController implements Controller, DataBinding {
 					.email(req.getParameter("email"))
 					.phoneNumber(req.getParameter("phone_number"))
 					.build();
+			// 암호화 작업
+			String salt = SHA256Util.generateSalt();
+			String newPassword = SHA256Util.getEncrypt(data.getPassword(), salt);
+			
+			data.setPassword(newPassword);
+			data.setSalt(salt);
 			
 			userService.create(Header.OK(data));
 			return "redirect:/shopping/clientPage/loginPage.do";

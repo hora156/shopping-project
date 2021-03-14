@@ -33,16 +33,17 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 		try {
 			connection = ds.getConnection();
 			stmt = connection.prepareStatement("insert into user "
-					+ "(account, password, status, email, "
+					+ "(account, password, salt, status, email, "
 					+ "phone_number, created_at, created_by)"
 					+ "values"
-					+ "(?, ?, ?, ?, ?, NOW(), ?)");
+					+ "(?, ?, ?, ?, ?, ?, NOW(), ?)");
 			stmt.setString(1, userApiRequest.getData().getAccount());
 			stmt.setString(2, userApiRequest.getData().getPassword());
-			stmt.setString(3, userApiRequest.getData().getStatus());
-			stmt.setString(4, userApiRequest.getData().getEmail());
-			stmt.setString(5, userApiRequest.getData().getPhoneNumber());
-			stmt.setString(6, "Admin_User");
+			stmt.setString(3, userApiRequest.getData().getSalt());
+			stmt.setString(4, userApiRequest.getData().getStatus());
+			stmt.setString(5, userApiRequest.getData().getEmail());
+			stmt.setString(6, userApiRequest.getData().getPhoneNumber());
+			stmt.setString(7, "Admin_User");
 			if(stmt.executeUpdate() == 1) 
 				return true;
 			else
@@ -91,8 +92,6 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 		try {
 			connection = ds.getConnection();
 			stmt = connection.createStatement();
-			System.out.println(account);
-			System.out.println(password);
 			rs = stmt.executeQuery("SELECT id, account, email, phone_number" +
 										" FROM user" +
 										" where account = '" + account +
@@ -130,6 +129,51 @@ public class UserServiceDaoImpl implements CrudInterface<UserApiRequest, UserApi
 			} catch (Exception e) {
 			}
 		}
+	}
+	
+	public String getSalt(String account) throws Exception {
+		
+		Connection connection = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			connection = ds.getConnection();
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery("SELECT salt" +
+										" FROM user" +
+										" where account = '" + account + "'");
+			UserApiResponse user = new UserApiResponse();
+			if(rs.next()) {
+				user = UserApiResponse.builder()
+						.salt(rs.getString("salt"))
+						.build();
+			}else {
+				return "존재하지 않는 아이디입니다.";
+			}
+			return user.getSalt();
+
+		} catch (Exception e) {
+			throw e;
+
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+			}
+			try {
+				if (connection != null)
+					connection.close();
+			} catch (Exception e) {
+			}
+		}
+		
 	}
 
 	public Header<ArrayList<UserApiResponse>> userList() throws Exception{

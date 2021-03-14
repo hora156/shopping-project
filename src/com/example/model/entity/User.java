@@ -19,6 +19,8 @@ public class User {
     private String account;
 
     private String password;
+    
+    private String salt;
 
     private String status;      // REGISTERED / UNREGISTERED / WAITING
 

@@ -72,11 +72,25 @@ a {
   text-align: center;
 }
 </style>
-
+<script src="<%=request.getContextPath()%>/lib/SHA256.js"></script>
 </head>
 <body>
 <jsp:include page="/Header.jsp"/>
+<script type="text/javascript">
+	$(document).ready(function() {
+	 	<%-- if(<%request.getParameter("error"); %> != null){
+	 		alert("아이디 또는 비밀번호가 잘못되었습니다.");
+	 	} --%>
+	 	
+		$('#sha').click(function() {
+			var origin = $('#psw').val();
+			var user_pw = SHA256(origin);
+			$('#psw').val(user_pw);
+			$('#sha').submit();
+		});
+	});
 
+</script>
 <form action="/shopping/clientPage/signupPage.do" method="post">
   <div class="container">
     <h1>Register</h1>
@@ -97,11 +111,11 @@ a {
     
     <label for="phone_number"><b>Phone Number</b></label>
     <input type="text" placeholder="010-0000-0000" name="phone_number" id="phone_number" required>
-    
+    <input type="hidden" class="pass" name="newPass">
     <hr>
 
     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-    <button type="submit" class="registerbtn">Register</button>
+    <button type="submit" id="sha" class="registerbtn">Register</button>
   </div>
 
   <div class="container signin">

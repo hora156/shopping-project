@@ -137,12 +137,27 @@
 	}
 </style>
 
+<script src="<%=request.getContextPath()%>/lib/SHA256.js"></script>
 
 </head>
 <body>
 <jsp:include page="/Header.jsp"/>
+<script type="text/javascript">
 
-
+	$(document).ready(function() {
+	 	<%-- if(<%request.getParameter("error"); %> != null){
+	 		alert("아이디 또는 비밀번호가 잘못되었습니다.");
+	 	} --%>
+	 	
+		$('#sha').click(function() {
+			var origin = $('.pass').val();
+			var user_pw = SHA256(origin);
+			$('.pass').val(user_pw);
+			$('#sha').submit();
+		});
+	});
+	
+</script>
 <div class="container">
   <form action="/shopping/clientPage/loginPage.do" method="POST">
     <div class="row">
@@ -168,8 +183,8 @@
           <p>Or sign in manually:</p>
         </div>
 	        <input type="text" name="account" placeholder="Username" required>
-	        <input type="password" name="password" placeholder="Password" required>
-	        <input type="submit" value="Login">
+	        <input type="password" class="pass" name="password" placeholder="Password" required>
+	        <input type="submit" id="sha" value="Login">
         
       </div>
       

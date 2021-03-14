@@ -21,6 +21,7 @@ public class UserApiRequest {
 
     private String password;
 
+    private String salt;
 
     private String status;
 
