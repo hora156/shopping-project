@@ -2,11 +2,13 @@
 
 
 사용기술 : JSA, Servlet, mySQL, jQueary
+
 개발인원 : 1명(혼자)
 
 
 ## NowLoading
 jap를 사용한 shopping-mall 웹사이트 입니다.
+
 현재 구현 화면은 
 1. 메인 페이지(상품 목록)
 2. 상세 페이지
